@@ -63,7 +63,7 @@ Como o kernel do linux tem vários Makefiles devemos avisar qual é o arquivo de
 echo "obj-y := hello.o" > Makefile
 ````
 
-Nisso voltamos uma pasta `$ cd ..` para manipular o Makefile principal e ao editar como `$nano Makefile` procuraremos a segunda aparição do core-y nesse arquivo. Ele estará com os seguintes módulos:
+Nisso voltamos uma pasta `$ cd ..` para manipular o Makefile principal e ao editar com o `$nano Makefile` procuraremos a segunda aparição do core-y nesse arquivo. Ele estará com os seguintes módulos:
 
 ````
 kernel/ certs/ mm/ fs/ ipc/ security/ crypto/ block/
