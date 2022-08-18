@@ -25,7 +25,7 @@ Para realizar essa etapa é necessário utilizar o Git e clonar o repositório d
 
 `$git clone https://github.com/microsoft/WSL2-Linux-Kernel.git`
 
-A pasta kernel pode ser criada em qualquer lugar já que compilaremos em cima dela e o wsl se encarregará de encaixar no devido lugar. A versão do WSL2-Linux-Kernel é sempre a mais estável, nesse caso 5.15.x.
+A pasta kernel pode ser criada em qualquer lugar já que compilaremos em cima dela e o executável será movido para a pasta raiz do Windows. Já na
 
 # 2. Criação da chamada
 
