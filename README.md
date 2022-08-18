@@ -25,7 +25,7 @@ Para realizar essa etapa é necessário utilizar o Git e clonar o repositório d
 
 `$git clone https://github.com/microsoft/WSL2-Linux-Kernel.git`
 
-A pasta kernel pode ser criada em qualquer lugar já que compilaremos em cima dela e o executável será movido para a pasta raiz do Windows. Já na
+A pasta kernel pode ser criada em qualquer lugar já que compilaremos em cima dela e o executável será movido para a pasta raiz do Windows e lá faremos alterações com auxílio do PowerShell.
 
 # 2. Criação da chamada
 
@@ -35,9 +35,9 @@ No diretório WSL2-Linux-Kernel, gerado pelo clone da etapa passada, crie um dir
 
 `$cd hello`
 
-Para manipular o arquivo hello.c utilizaremos qualquer editor de texto e pelo terminal é mais fácil utilizar o nano, pico, vim ou nesse caso utilizarei o lunarvim:
+Para manipular o arquivo hello.c utilizaremos qualquer editor de texto e pelo terminal é mais fácil utilizar o nano, pico, vim ou o lunar vim, nesse caso utilizaremos o nano:
 
-`$lvim hello.c`
+`$nano hello.c`
 
 copiando o seguinte código:
 
@@ -53,7 +53,7 @@ SYSCALL_DEFINE0(hello)
 }
 ````
 
-Esse código contem o printk que é uma função C da interface do kernel Linux que imprime mensagens no log do kernel. Então, ao final, do processo, ao ver as mensagens do buffer do kernel, quando chamado, Hello World deverá aparecer. O SYSCALL_DEFINE0 irá definir a chamada de sistema para o hello que estamos criando.
+Esse código contem o printk que é uma função C da interface do kernel Linux que imprime mensagens no log do kernel. Então, ao final do processo, ao ver as mensagens do buffer do kernel, quando o código for compilado e executado, Hello World deverá aparecer. O SYSCALL_DEFINE0 irá definir a chamada de sistema para o hello que estamos criando.
 
 Como o kernel do linux tem vários Makefiles devemos avisar qual é o arquivo de origem ao arquivo objeto gerado e para isso criamos um Makefile `$touch Makefile` e colocamos o seguinte código:
 
