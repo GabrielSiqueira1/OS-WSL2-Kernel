@@ -190,7 +190,7 @@ Por padrão, o wsl sempre apontará para a variável kernel, e nesse caso estamo
 Abrindo novamente a distribuição no wsl, e realizando o `$uname -r` percebemos que o kernel foi alterado.
 
 <div align="center">
-    <img src="./img/other_kernel.png">
+    <img src="./img/other-kernel.png">
 </div>
 
 
