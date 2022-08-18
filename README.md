@@ -114,11 +114,17 @@ Terminada a instalação, para compilarmos, o seguinte código se faz necessári
 
 `$make KCONFIG_CONFIG=Microsoft/config-wsl`
 
-O código acima pode ser modificado de acordo com a quantidade de processadores, para saber basta abrir o gerenciador de tarefas na aba desempenho. Para o meu caso, utilizarei 4 dos 8 processadores, portanto:
+O código acima pode ser modificado de acordo com a quantidade de processadores, para saber pode-se utilizar o aplicativo cpu-z e é possível ver a quantidade em cores.
 
 `$make KCONFIG_CONFIG=Microsoft/config-wsl -j4`
 
 O processo dura entorno de 10 a 30 minutos.
+
+<img src="./img/icomp.png">
+
+<img src="./img/fcomp.png">
+
+O processo é bem sucedido se a última mensagem for favorável
 
 # 4. Configuração
 ---
@@ -126,6 +132,8 @@ O processo dura entorno de 10 a 30 minutos.
 Após a compilação um arquivo chamado vmlinux será gerado, esse é o nosso novo kernel e para isso copiamos ele para a pasta do usuário do windows pois lá criaremos um arquivo do wsl para configuração, para isso:
 
 `$sudo cp vmlinux /mnt/c/Users/<Nome_Usuário>/`
+
+<img src="./img/cpower.png">
 
 Abrindo o PowerShell, criaremos o arquivo .wslconfig:
 
@@ -169,3 +177,5 @@ gcc teste.c
 ````
 
 obtemos a mensagem "System call sys_hello returned 0" e analisando o `$dmsg` a última linha mostra um Hello World.
+
+<img src="./img/final.png">
