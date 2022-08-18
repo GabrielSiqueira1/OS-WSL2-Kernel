@@ -53,6 +53,8 @@ SYSCALL_DEFINE0(hello)
 }
 ````
 
+<img src="./img/cat_hello.png">
+
 Esse código contem o printk que é uma função C da interface do kernel Linux que imprime mensagens no log do kernel. Então, ao final do processo, ao ver as mensagens do buffer do kernel, quando o código for compilado e executado, Hello World deverá aparecer. O SYSCALL_DEFINE0 irá definir a chamada de sistema para o hello que estamos criando.
 
 Como o kernel do linux tem vários Makefiles devemos avisar qual é o arquivo de origem ao arquivo objeto gerado e para isso criamos um Makefile `$touch Makefile` e colocamos o seguinte código:
