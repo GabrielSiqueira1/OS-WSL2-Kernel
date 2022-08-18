@@ -25,6 +25,8 @@ Para realizar essa etapa é necessário utilizar o Git e clonar o repositório d
 
 `$git clone https://github.com/microsoft/WSL2-Linux-Kernel.git`
 
+`$cd WSL2-Linux-Kernel`
+
 A pasta kernel pode ser criada em qualquer lugar já que compilaremos em cima dela e o executável será movido para a pasta raiz do Windows e lá faremos alterações com auxílio do PowerShell.
 
 # 2. Criação da chamada
