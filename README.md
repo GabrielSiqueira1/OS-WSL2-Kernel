@@ -9,7 +9,7 @@ ou
 
 `$neofetch`
 
-<img src="./img/old_kernel.png">
+<img align="center" src="./img/old_kernel.png">
 
 # 1. Download do arquivos do kernel
 
@@ -55,7 +55,7 @@ SYSCALL_DEFINE0(hello)
 }
 ````
 
-<img src="./img/cat_hello.png">
+<img align="center" src="./img/cat_hello.png">
 
 Esse código contem o printk que é uma função C da interface do kernel Linux que imprime mensagens no log do kernel. Então, ao final do processo, ao ver as mensagens do buffer do kernel, quando o código for compilado e executado, Hello World deverá aparecer. O SYSCALL_DEFINE0 irá definir a chamada de sistema para o hello que estamos criando.
 
@@ -77,7 +77,7 @@ e o objetivo é adicionar o hello após o block
 kernel/ certs/ mm/ fs/ ipc/ security/ crypto/ block/ hello/
 ````
 
-<img src="./img/cat_mf.png">
+<img align="center" src="./img/cat_mf.png">
 
 Antes de compilarmos e instalarmos devemos adicionar a nova chamada na biblioteca de syscalls do linux, portanto:
 
@@ -89,7 +89,7 @@ e chegando no #endif, presente na última linha do arquivo, acima dele adicionar
 asmlinkage long sys_hello(void);
 ````
 
-<img src="./img/cat_syscalls_h.png">
+<img align="center" src="./img/cat_syscalls_h.png">
 
 Por fim, adicionamos a chamada na tabela de chamadas de sistema, e para isso:
 
@@ -101,7 +101,7 @@ e na última chamada adicionamos o nosso hello, é provável que tenha 547 chama
 548     common  hello                sys_hello
 ````
 
-<img src="./img/cat_table.png">
+<img align="center" src="./img/cat_table.png">
 
 # 3. Compilação
 ---
@@ -120,9 +120,9 @@ O código acima pode ser modificado de acordo com a quantidade de processadores,
 
 O processo dura entorno de 10 a 30 minutos.
 
-<img src="./img/icomp.png">
+<img align="center" src="./img/icomp.png">
 
-<img src="./img/fcomp.png">
+<img align="center" src="./img/fcomp.png">
 
 O processo é bem sucedido se a última mensagem for favorável
 
@@ -133,7 +133,7 @@ Após a compilação um arquivo chamado vmlinux será gerado, esse é o nosso no
 
 `$sudo cp vmlinux /mnt/c/Users/<Nome_Usuário>/`
 
-<img src="./img/cpower.png">
+<img align="center" src="./img/cpower.png">
 
 Abrindo o PowerShell, criaremos o arquivo .wslconfig:
 
@@ -178,4 +178,4 @@ gcc teste.c
 
 obtemos a mensagem "System call sys_hello returned 0" e analisando o `$dmsg` a última linha mostra um Hello World.
 
-<img src="./img/final.png">
+<img align="center" src="./img/final.png">
