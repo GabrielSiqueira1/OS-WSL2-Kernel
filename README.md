@@ -100,9 +100,9 @@ e na última chamada adicionamos o nosso hello, é provável que tenha 547 chama
 ````
 548     common  hello                sys_hello
 ````
-
-<img align="center" src="./img/cat_table.png">
-
+<div align="center">
+    <img src="./img/cat_table.png">
+</div>
 # 3. Compilação
 ---
 
