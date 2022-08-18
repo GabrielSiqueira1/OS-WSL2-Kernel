@@ -106,15 +106,15 @@ e na última chamada adicionamos o nosso hello, é provável que tenha 547 chama
 
 Para essa etapa precisamos instalar:
 
-`$ sudo apt install build-essential flex bison dwarves libssl-dev libelf-dev`
+`$sudo apt install build-essential flex bison dwarves libssl-dev libelf-dev`
 
 Terminada a instalação, para compilarmos, o seguinte código se faz necessário:
 
-`$ make KCONFIG_CONFIG=Microsoft/config-wsl`
+`$make KCONFIG_CONFIG=Microsoft/config-wsl`
 
 O código acima pode ser modificado de acordo com a quantidade de processadores, para saber basta abrir o gerenciador de tarefas na aba desempenho. Para o meu caso, utilizarei 4 dos 8 processadores, portanto:
 
-`$ make KCONFIG_CONFIG=Microsoft/config-wsl -j4`
+`$make KCONFIG_CONFIG=Microsoft/config-wsl -j4`
 
 O processo dura entorno de 10 a 30 minutos.
 
@@ -123,7 +123,7 @@ O processo dura entorno de 10 a 30 minutos.
 
 Após a compilação um arquivo chamado vmlinux será gerado, esse é o nosso novo kernel e para isso copiamos ele para a pasta do usuário do windows pois lá criaremos um arquivo do wsl para configuração, para isso:
 
-`$ sudo cp vmlinux /mnt/c/Users/<Nome_Usuário>/`
+`$sudo cp vmlinux /mnt/c/Users/<Nome_Usuário>/`
 
 Abrindo o PowerShell, criaremos o arquivo .wslconfig:
 
@@ -145,7 +145,7 @@ Abrindo novamente a distribuição no wsl, e realizando o `$uname -r` percebemos
 
 # 5. Teste
 
-Criando um novo arquivo, `$ nano teste.c`, colocaremos este código:
+Criando um novo arquivo, `$nano teste.c`, colocaremos este código:
 
 ````
 #include <stdio.h>
@@ -166,4 +166,4 @@ gcc teste.c
 ./a.out
 ````
 
-obtemos a mensagem "System call sys_hello returned 0" e analisando o `$ dmsg` a última linha mostra um Hello World.
+obtemos a mensagem "System call sys_hello returned 0" e analisando o `$dmsg` a última linha mostra um Hello World.
