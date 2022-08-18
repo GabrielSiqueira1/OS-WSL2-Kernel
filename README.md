@@ -136,7 +136,7 @@ O processo dura entorno de 30 a 180 minutos.
 
 ---
 
-Se ocorre o erro 255 significa que utilizou-se muita memória, chegou perto de 2.5GB, e o processo foi interrompido, para isso há duas soluções, ou aumenta a memória do WSL ou compile novamente com menos velocidade `$make KCONFIG_CONFIG=Microsoft/config-wsl`. Para identificar que chegou perto de 2.5GB basta usar `$dmesg | grep pahole`
+Se ocorrer o erro 255 significa que utilizou-se muita memória, chegou perto de 2.5GB, e o processo foi interrompido, para isso há duas soluções, ou aumenta a memória do WSL ou compile novamente até que não gere mais erros. Para identificar que chegou perto de 2.5GB basta usar `$dmesg | grep pahole`
 
 <div align="center">
     <img src="./img/pico.png">
@@ -154,7 +154,7 @@ Independente da escolha, recomece a compilação:
     <img src="./img/fcomp.png">
 </div>
     
-O processo é bem sucedido se a última mensagem for favorável
+Foram necessárias 3 compilações, onde a última não apresentou erro. O processo é bem sucedido se a última mensagem for favorável
 
 # 4. Configuração
 ---
