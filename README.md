@@ -158,4 +158,4 @@ gcc teste.c
 ./a.out
 ````
 
-obtemos a mensagem System call sys_hello returned 0 e analisando o `$ dmsg` a última linha mostra um Hello World.
+obtemos a mensagem "System call sys_hello returned 0" e analisando o `$ dmsg` a última linha mostra um Hello World.
