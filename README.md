@@ -9,8 +9,10 @@ ou
 
 `$neofetch`
 
-<img align="center" src="./img/old_kernel.png">
-
+<div align="center">
+    <img src="./img/old_kernel.png">
+</div>
+    
 # 1. Download do arquivos do kernel
 
 ---
@@ -55,7 +57,9 @@ SYSCALL_DEFINE0(hello)
 }
 ````
 
-<img align="center" src="./img/cat_hello.png">
+<div align="center">
+    <img src="./img/cat_hello.png">
+</div>
 
 Esse código contem o printk que é uma função C da interface do kernel Linux que imprime mensagens no log do kernel. Então, ao final do processo, ao ver as mensagens do buffer do kernel, quando o código for compilado e executado, Hello World deverá aparecer. O SYSCALL_DEFINE0 irá definir a chamada de sistema para o hello que estamos criando.
 
@@ -77,7 +81,9 @@ e o objetivo é adicionar o hello após o block
 kernel/ certs/ mm/ fs/ ipc/ security/ crypto/ block/ hello/
 ````
 
-<img align="center" src="./img/cat_mf.png">
+<div align="center">
+    <img src="./img/cat_mf.png">
+</div>
 
 Antes de compilarmos e instalarmos devemos adicionar a nova chamada na biblioteca de syscalls do linux, portanto:
 
@@ -89,8 +95,10 @@ e chegando no #endif, presente na última linha do arquivo, acima dele adicionar
 asmlinkage long sys_hello(void);
 ````
 
-<img align="center" src="./img/cat_syscalls_h.png">
-
+<div align="center">
+    <img src="./img/cat_syscalls_h.png">
+</div>
+    
 Por fim, adicionamos a chamada na tabela de chamadas de sistema, e para isso:
 
 `$nano arch/x86/entry/syscalls/syscall_64.tbl`
@@ -100,9 +108,11 @@ e na última chamada adicionamos o nosso hello, é provável que tenha 547 chama
 ````
 548     common  hello                sys_hello
 ````
+
 <div align="center">
     <img src="./img/cat_table.png">
 </div>
+
 # 3. Compilação
 ---
 
@@ -114,16 +124,36 @@ Terminada a instalação, para compilarmos, o seguinte código se faz necessári
 
 `$make KCONFIG_CONFIG=Microsoft/config-wsl`
 
-O código acima pode ser modificado de acordo com a quantidade de processadores, para saber pode-se utilizar o aplicativo cpu-z e é possível ver a quantidade em cores.
+O código acima pode ser modificado de acordo com a quantidade de processadores, para saber pode-se utilizar o aplicativo cpu-z e é possível ver a quantidade em cores. Note que se usar todos, o computador ficará extremamente lento.
 
 `$make KCONFIG_CONFIG=Microsoft/config-wsl -j4`
 
-O processo dura entorno de 10 a 30 minutos.
+O processo dura entorno de 30 a 180 minutos.
 
-<img align="center" src="./img/icomp.png">
+<div align="center">
+    <img src="./img/icomp.png">
+</div>
 
-<img align="center" src="./img/fcomp.png">
+---
 
+Se ocorre o erro 255 significa que utilizou-se muita memória, chegou perto de 2.5GB, e o processo foi interrompido, para isso há duas soluções, ou aumenta a memória do WSL ou compile novamente com menos velocidade `$make KCONFIG_CONFIG=Microsoft/config-wsl`. Para identificar que chegou perto de 2.5GB basta usar `$dmesg | grep pahole`
+
+<div align="center">
+    <img src="./img/pico.png">
+</div>
+
+Independente da escolha, recomece a compilação:
+
+<div align="center">
+    <img src="./img/recompila.png">
+</div>
+
+---
+    
+<div align="center">
+    <img src="./img/fcomp.png">
+</div>
+    
 O processo é bem sucedido se a última mensagem for favorável
 
 # 4. Configuração
@@ -133,8 +163,12 @@ Após a compilação um arquivo chamado vmlinux será gerado, esse é o nosso no
 
 `$sudo cp vmlinux /mnt/c/Users/<Nome_Usuário>/`
 
-<img align="center" src="./img/cpower.png">
+<div align="center">
+    <img src="./img/cpower.png">
+</div>
 
+- No PowerShell
+    
 Abrindo o PowerShell, criaremos o arquivo .wslconfig:
 
 `code .wslconfig` 
@@ -151,7 +185,14 @@ Por padrão, o wsl sempre apontará para a variável kernel, e nesse caso estamo
 
 `wsl --shutdown <Nome_Distribuição>`
 
+- No Linux
+
 Abrindo novamente a distribuição no wsl, e realizando o `$uname -r` percebemos que o kernel foi alterado.
+
+<div align="center">
+    <img src="./img/other_kernel.png">
+</div>
+
 
 # 5. Teste
 
@@ -176,6 +217,8 @@ gcc teste.c
 ./a.out
 ````
 
-obtemos a mensagem "System call sys_hello returned 0" e analisando o `$dmsg` a última linha mostra um Hello World.
+obtemos a mensagem "System call sys_hello returned 0" e analisando o `$dmesg` a última linha mostra um Hello World.
 
-<img align="center" src="./img/final.png">
+<div align="center">
+    <img src="./img/final.png">
+</div>
