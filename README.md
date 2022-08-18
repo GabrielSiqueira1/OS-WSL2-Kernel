@@ -60,7 +60,7 @@ Esse código contem o printk que é uma função C da interface do kernel Linux 
 Como o kernel do linux tem vários Makefiles devemos avisar qual é o arquivo de origem ao arquivo objeto gerado e para isso criamos um Makefile `$touch Makefile` e colocamos o seguinte código:
 
 ````
-obj-y := hello.o
+echo "obj-y := hello.o" > Makefile
 ````
 
 Nisso voltamos uma pasta `$ cd ..` para manipular o Makefile principal e ao editar como `$nano Makefile` procuraremos a segunda aparição do core-y nesse arquivo. Ele estará com os seguintes módulos:
