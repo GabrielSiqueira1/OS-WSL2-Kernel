@@ -136,7 +136,7 @@ O processo dura entorno de 30 a 180 minutos.
 
 ---
 
-Se ocorrer o erro 255 significa que utilizou-se muita memória, chegou perto de 2.5GB, e o processo foi interrompido, para isso há duas soluções, ou aumenta a memória do WSL ou compile novamente até que não gere mais erros. Para identificar que chegou perto de 2.5GB basta usar `$dmesg | grep pahole`
+Se ocorrer o erro 255 significa que utilizou-se muita memória, chegou perto de 2.5GB, e o processo foi interrompido, para isso há duas soluções, ou aumenta a memória do WSL ou desative os processos que rodam junto com o WSL como por exemplo o Docker. Para identificar que chegou perto de 2.5GB basta usar `$dmesg | grep pahole`
 
 <div align="center">
     <img src="./img/pico.png">
@@ -151,10 +151,10 @@ Independente da escolha, recomece a compilação:
 ---
     
 <div align="center">
-    <img src="./img/fcomp.png">
+    <img src="./img/ready.png">
 </div>
     
-Foram necessárias 3 compilações, onde a última não apresentou erro. O processo é bem sucedido se a última mensagem for favorável
+O processo é bem sucedido se a última mensagem for favorável (ready).
 
 # 4. Configuração
 ---
