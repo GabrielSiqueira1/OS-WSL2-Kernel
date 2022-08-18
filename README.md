@@ -100,7 +100,7 @@ Para essa etapa precisamos instalar:
 
 `$ sudo apt install build-essential flex bison dwarves libssl-dev libelf-dev`
 
-Terminada a instalação, para compilarmos o seguinte código se faz necessário:
+Terminada a instalação, para compilarmos, o seguinte código se faz necessário:
 
 `$ make KCONFIG_CONFIG=Microsoft/config-wsl`
 
@@ -117,9 +117,9 @@ Após a compilação um arquivo chamado vmlinux será gerado, esse é o nosso no
 
 `$ sudo cp vmlinux /mnt/c/Users/<Nome_Usuário>/`
 
-Abrindo o poweshell, criaremos o arquivo .wslconfig:
+Abrindo o PowerShell, criaremos o arquivo .wslconfig:
 
-`code .wslconfig`
+`code .wslconfig` 
 
 e adicionaremos:
 
@@ -127,7 +127,9 @@ e adicionaremos:
 [wsl2]
 kernel=C:\\Users\\<Nome_Usuário>\\vmlinux
 ````
-Por padrão, o wsl sempre apontará para a variável kernel, e nesse caso estamos apenas redirecionando esse apontamento modificando o valor da variável. Agora o kernel é o vmlinux e ainda no powershell digitaremos:
+Note que code só poderá ser chamado se o vscode estiver instalado, caso não o tenha, baixe ou utilize o notepad do Windows.
+
+Por padrão, o wsl sempre apontará para a variável kernel, e nesse caso estamos apenas alterando seu valor com um caminho diferente do padrão. Agora o kernel é o vmlinux e ainda no PowerShell digitaremos:
 
 `wsl --shutdown <Nome_Distribuição>`
 
