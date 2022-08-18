@@ -75,6 +75,8 @@ e o objetivo é adicionar o hello após o block
 kernel/ certs/ mm/ fs/ ipc/ security/ crypto/ block/ hello/
 ````
 
+<img src="./img/cat_mf.png">
+
 Antes de compilarmos e instalarmos devemos adicionar a nova chamada na biblioteca de syscalls do linux, portanto:
 
 `$nano include/linux/syscalls.h`
@@ -85,6 +87,8 @@ e chegando no #endif, presente na última linha do arquivo, acima dele adicionar
 asmlinkage long sys_hello(void);
 ````
 
+<img src="./img/cat_syscalls_h.png">
+
 Por fim, adicionamos a chamada na tabela de chamadas de sistema, e para isso:
 
 `$nano arch/x86/entry/syscalls/syscall_64.tbl`
@@ -94,6 +98,8 @@ e na última chamada adicionamos o nosso hello, é provável que tenha 547 chama
 ````
 548     common  hello                sys_hello
 ````
+
+<img src="./img/cat_table.png">
 
 # 3. Compilação
 ---
