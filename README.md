@@ -1,9 +1,15 @@
 # OS_WSL2-Kernel
 Mudança do kernel do WSL afim de  adicionar uma chamada de sistema Hello World
 
-Para realizar esse trabalho prático utilizou-se o WSL2 na distribuição Ubuntu 20.04 que tem o kernel base 5.10.x-microsoft-standard. Para saber o kernel basta digitar:
+Para realizar esse trabalho prático utilizou-se o WSL2 na distribuição Ubuntu 20.04 que tem o kernel base 5.10.16.3-microsoft-standard-WSL2. Para saber o kernel basta digitar:
 
 `$uname -r`
+
+ou 
+
+`$neofetch`
+
+<img src="./img/old_kernel.png">
 
 # 1. Download do arquivos do kernel
 
