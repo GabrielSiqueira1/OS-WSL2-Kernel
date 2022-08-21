@@ -246,23 +246,32 @@ int main()
 \begin{enumerate}
 		\item A implementação da chamada de sistema e o teste funcionaram corretamente? Em caso de negativo, explique o motivo.
 		
-		Resposta: Sim, funcionou.
+		Resposta: Sim, funcionou, como demonstrado na figura 8 desse relatório.
 		
 		\item Qual é o nome do arquivo executável que corresponde ao Kernel?
 		
-		Resposta: O arquivo bzImage aparece como executável, bem como o vmlinux que também é gerado por esse procedimento.
+		Resposta: O arquivo bzImage aparece como executável, bem como o vmlinux que também é gerado por esse procedimento, no entanto apenas o bzImage aparece o nome do kernel.
 		
+		\begin{figure}[!h]
+            \centering 
+            \includegraphics[width=13.5cm]{file.png}
+            \label{figura:qualquernome}
+            \caption{Vmlinux e bzImage}
+        \end{figure}
+        		
+        \newpage
+        
 		\item Após a instalação do Kernel, em qual local (diretório) foi armazenado o executável do Kernel?
 		
-		Resposta: Em 
+		Resposta: Em arch/x86/boot/ onde podemos encontrar o bzImage e como apresentado pela figura 6.
 		
 		\item Em qual nível de privilégio a chamada de sistema implementada irá executar (usuário ou kernel/núcleo)?
 		
-		Resposta: 
+		Resposta: No kernel, tendo em vista de que se trata de um "print" que necessita do auxílio do kernel.
 		
 		\item Um roteiro típico contendo as etapas da execução de uma chamada de sistema é apresentado nas páginas 23 e 24 do livro (Capítulo 2 do livro do Mazieiro). Você entendeu todos os passos de 1 a 8?
 		
-		\item 6.	O Kernel precisará de ser recompilado toda vez que uma nova funcionalidade for adicionada ao kernel? Explique. Provavelmente, você terá que pesquisar na internet. Não precisa se preocupar em dar a resposta correta, apenas pense sobre o assunto e procure responder a questão.
+		\item O Kernel precisará de ser recompilado toda vez que uma nova funcionalidade for adicionada ao kernel? Explique. Provavelmente, você terá que pesquisar na internet. Não precisa se preocupar em dar a resposta correta, apenas pense sobre o assunto e procure responder a questão.
 		
 	\end{enumerate}
 \newpage
