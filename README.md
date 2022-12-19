@@ -128,7 +128,7 @@ O código acima pode ser modificado de acordo com a quantidade de processadores,
 
 `$make KCONFIG_CONFIG=Microsoft/config-wsl -j4`
 
-O processo dura entorno de 30 a 180 minutos.
+O processo dura entorno de 30 a 180 minutos. Se durante o processo houver uma interrupção de escolha, escolha sempre o padrão.
 
 <div align="center">
     <img src="./img/icomp.png">
