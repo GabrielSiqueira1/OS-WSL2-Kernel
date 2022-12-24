@@ -1,13 +1,19 @@
 # Sistemas Operacionais - Compilação do Kernel no WSL2
+
 Mudança do kernel do WSL afim de  adicionar uma chamada de sistema Hello World
 
 Para realizar esse trabalho prático utilizou-se o WSL2 na distribuição Ubuntu 20.04 que tem o kernel base 5.10.16.3-microsoft-standard-WSL2. Para saber o kernel basta digitar:
 
-`$uname -r`
+```
+uname -r
+```
 
 ou 
 
-`$neofetch`
+```
+sudo apt install neofetch
+neofetch
+```
 
 <div align="center">
     <img src="./img/old_kernel.png">
@@ -19,15 +25,17 @@ ou
 
 Para realizar essa etapa é necessário utilizar o Git e clonar o repositório da Microsoft, WSL2-Linux-Kernel:
 
-`$sudo apt install git`
+```
+#Instalação do git para clonagem de repositórios
 
-`$mkdir kernel`
+sudo apt install git
 
-`$cd kernel`
+mdkir kernel && cd kernel
 
-`$git clone https://github.com/microsoft/WSL2-Linux-Kernel.git`
+git clone https://github.com/microsoft/WSL2-Linux-Kernel.github
 
-`$cd WSL2-Linux-Kernel`
+cd WSL2-Linux-Kernel
+```
 
 A pasta kernel pode ser criada em qualquer lugar já que compilaremos em cima dela e o executável será movido para a pasta raiz do Windows e lá faremos alterações com auxílio do PowerShell.
 
@@ -35,14 +43,15 @@ A pasta kernel pode ser criada em qualquer lugar já que compilaremos em cima de
 
 No diretório WSL2-Linux-Kernel, gerado pelo clone da etapa passada, crie um diretório hello e dentro desse um arquivo hello.c. 
 
-`$mkdir hello`
+```
+mkdir hello && cd hello
+```
 
-`$cd hello`
+Para manipular o arquivo hello.c utilizaremos qualquer editor de texto pré-instalado pelo Linux, como nano, pico ou vi. 
 
-Para manipular o arquivo hello.c utilizaremos qualquer editor de texto e pelo terminal é mais fácil utilizar o nano, pico, vim ou o lunar vim, nesse caso utilizaremos o nano:
-
-`$nano hello.c`
-
+```
+hello.c
+```
 copiando o seguinte código:
 
 ````
@@ -86,9 +95,9 @@ kernel/ certs/ mm/ fs/ ipc/ security/ crypto/ block/ hello/
 </div>
 
 Antes de compilarmos e instalarmos devemos adicionar a nova chamada na biblioteca de syscalls do linux, portanto:
-
-`$nano include/linux/syscalls.h`
-
+```
+nano include/linux/syscalls.h
+```
 e chegando no #endif, presente na última linha do arquivo, acima dele adicionaremos:
 
 ````
@@ -101,7 +110,9 @@ asmlinkage long sys_hello(void);
     
 Por fim, adicionamos a chamada na tabela de chamadas de sistema, e para isso:
 
-`$nano arch/x86/entry/syscalls/syscall_64.tbl`
+```
+nano arch/x86/entry/syscalls/syscall_64.tbl
+```
 
 e na última chamada adicionamos o nosso hello, é provável que tenha 547 chamadas no kernel, portanto:
 
@@ -118,15 +129,21 @@ e na última chamada adicionamos o nosso hello, é provável que tenha 547 chama
 
 Para essa etapa precisamos instalar:
 
-`$sudo apt install build-essential flex bison dwarves libssl-dev libelf-dev`
+```
+sudo apt install build-essential flex bison dwarves libssl-dev libelf-dev
+```
 
 Terminada a instalação, para compilarmos, o seguinte código se faz necessário:
 
-`$make KCONFIG_CONFIG=Microsoft/config-wsl`
+```
+make KCONFIG_CONFIG=Microsoft/config-wsl
+```
 
-O código acima pode ser modificado de acordo com a quantidade de processadores, para saber pode-se utilizar o aplicativo cpu-z e é possível ver a quantidade em cores. Note que se usar todos, o computador ficará extremamente lento.
+O código acima pode ser modificado de acordo com a quantidade de processadores, para saber a quantidade, pode-se utilizar o aplicativo cpu-z. Note que se usar todos, o computador ficará extremamente lento.
 
-`$make KCONFIG_CONFIG=Microsoft/config-wsl -j4`
+```
+$make KCONFIG_CONFIG=Microsoft/config-wsl -j4
+```
 
 O processo dura entorno de 30 a 180 minutos. Se durante o processo houver uma interrupção de escolha, escolha sempre o padrão.
 
@@ -136,7 +153,7 @@ O processo dura entorno de 30 a 180 minutos. Se durante o processo houver uma in
 
 ---
 
-Se ocorrer o erro 255 significa que utilizou-se muita memória, chegou perto de 2.5GB, e o processo foi interrompido, para isso há duas soluções, ou aumenta a memória do WSL ou desative os processos que rodam junto com o WSL como por exemplo o Docker. Para identificar que chegou perto de 2.5GB basta usar `$dmesg | grep pahole`
+Se ocorrer o erro 255 significa que utilizou-se muita memória (chegou perto de 2.5GB) e o processo foi interrompido, para isso há duas soluções, ou aprimora-se a memória do WSL ou desativa-se os processos que rodam junto com o WSL como por exemplo o Docker. Para identificar que chegou perto de 2.5GB basta usar `$dmesg | grep pahole`
 
 <div align="center">
     <img src="./img/pico.png">
@@ -161,7 +178,9 @@ O processo é bem sucedido se a última mensagem for favorável (ready).
 
 Após a compilação um arquivo chamado vmlinux será gerado, esse é o nosso novo kernel e para isso copiamos ele para a pasta do usuário do windows pois lá criaremos um arquivo do wsl para configuração, para isso:
 
-`$sudo cp vmlinux /mnt/c/Users/<Nome_Usuário>/`
+```
+sudo cp vmlinux /mnt/c/Users/<Nome_Usuário>/
+```
 
 <div align="center">
     <img src="./img/cpower.png">
@@ -183,7 +202,9 @@ Note que code só poderá ser chamado se o vscode estiver instalado, caso não o
 
 Por padrão, o wsl sempre apontará para a variável kernel, e nesse caso estamos apenas alterando seu valor com um caminho diferente do padrão. Agora o kernel é o vmlinux e ainda no PowerShell digitaremos:
 
-`wsl --shutdown <Nome_Distribuição>`
+```
+wsl --shutdown <Nome_Distribuição>
+```
 
 - No Linux
 

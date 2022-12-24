@@ -1,7 +1,7 @@
 \documentclass[a4paper, 12pt]{article}
 
-\usepackage[portuges]{babel}
 \usepackage[utf8]{inputenc}
+\usepackage{url}
 \usepackage{amsmath}
 \usepackage{indentfirst}
 \usepackage{graphicx}
@@ -120,7 +120,7 @@ Para realizar esse trabalho prático utilizou-se o WSL2 na distribuição Ubuntu
 \begin{figure}[h]
 \centering 
 \includegraphics[width=13.5cm]{old_kernel.png}
-\label{figura:qualquernome}
+\label{figura:oldkernel}
 \caption{Kernel antigo}
 \end{figure}
 
@@ -135,7 +135,7 @@ Para baixar esse kernel foi necessário as seguintes etapas:
 \end{enumerate}
 
 \subsection{Hello World}
-O módulo adicionado será o Hello World e para isso cria-se um diretório dentro desse kernel com um código em c, como apresentado abaixo:
+O módulo adicionado será o Hello World e para isso criou-se um diretório dentro desse kernel com um código em c, como apresentado abaixo:
 
 \begin{lstlisting} 
 #include <linux/kernel.h>
@@ -152,7 +152,7 @@ SYSCALL_DEFINE0(hello)
 \begin{figure}[h]
 \centering 
 \includegraphics[width=13.5cm]{cat_hello.png}
-\label{figura:qualquernome}
+\label{figura:cathello}
 \caption{Código em C}
 \end{figure}
 
@@ -164,12 +164,12 @@ Para realizar o procedimento acima necessitamos dos seguintes passos:
     \item nano hello.c
 \end{enumerate}
 
-Onde está o arquivo em c, deve-se criar um Makefile apresentando um arquivo objeto obtido após a compilação e além disso no Makefile do kernel deve-se mostrar quais são os módulos pertencentes ao mesmo e portanto é necessário alterar adicionando o hello aos módulos no core-y.
+No diretório em que reside o arquivo em c, deve-se criar um Makefile apresentando um arquivo objeto obtido após a compilação e além disso no Makefile do kernel deve-se mostrar quais são os módulos pertencentes ao mesmo e portanto é necessário alterar, adicionando o hello aos módulos no core-y.
 
-\begin{figure}[!htb]
+\begin{figure}[!ht]
 \centering 
 \includegraphics[width=13.5cm]{cat_mf.png}
-\label{figura:qualquernome}
+\label{figura:catmf}
 \caption{Makefile}
 \end{figure}
 
@@ -177,7 +177,7 @@ Para o procedimento acima foram necessários os seguintes passos:
 
 \begin{enumerate}
     \item touch Makefile
-    \item echo "obj-y := hello.o" > Makefile
+    \item echo \texttt{"obj-y := hello.o" > Makefile}
     \item cd ..
     \item nano Makefile
 \end{enumerate}
@@ -186,21 +186,21 @@ Agora, o hello deve ser conhecido como chamada de sistema e para isso no diretó
 \begin{lstlisting} 
     asmlinkage long sys_hello(void) 
 \end{lstlisting}  
-e além disso, essa chamada deve ser adicionada na tabela de chamadas (nano arch/x86/entry/syscalls/syscall_64.tbl).
+e além disso, essa chamada deve ser adicionada na tabela de chamadas (\texttt{nano arch/x86/entry/syscalls/syscall\_64.tbl}).
 
 \newpage 
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \centering 
 \includegraphics[width=13.5cm]{cat_syscalls_h.png}
-\label{figura:qualquernome}
+\label{figura:catsyscallsh}
 \caption{Chamadas}
 \end{figure}
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \centering 
 \includegraphics[width=13.5cm]{cat_table.png}
-\label{figura:qualquernome}
+\label{figura:cat_table}
 \caption{Tabela}
 \end{figure}
 
@@ -208,19 +208,19 @@ e além disso, essa chamada deve ser adicionada na tabela de chamadas (nano arch
 
 \subsection{Compilação no WSL2}
 
-Para compilar no wsl se usa-se  
+Para compilar no wsl usa-se  
 \begin{lstlisting} 
     make KCONFIG_CONFIG=Microsoft/config-wsl 
 \end{lstlisting} alterando o parâmetro j caso queira utilizar mais cores da sua máquina do que o padrão e o resultado final fica armazenado na pasta do kernel baixado com o nome vmlinux além do bzImage identificado na imagem.
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \centering 
 \includegraphics[width=13.5cm]{ready.png}
-\label{figura:qualquernome}
+\label{figura:ready}
 \caption{Compilação terminada}
 \end{figure}
 
-Para que a compilação seja possível é necessário instalar os pacotes do seguinte comando: sudo apt install build-essential flex bison dwarves libssl-dev libelf-dev
+Para que a compilação seja possível é necessário instalar os pacotes com seguinte comando: sudo apt install build-essential flex bison dwarves libssl-dev libelf-dev
 
 \newpage
 
@@ -237,10 +237,10 @@ Dessa forma o kernel muda como segue a imagem:
 
 \newpage
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \centering 
 \includegraphics[width=13.5cm]{other-kernel.png}
-\label{figura:qualquernome}
+\label{figura:other-kernel}
 \caption{Kernel alterado}
 \end{figure}
 
@@ -253,24 +253,23 @@ Compilando e executando o seguinte código em c obtemos uma chamada de sistema c
 #include <linux/kernel.h>
 #include <sys/syscall.h>
 #include <unistd.h>
-int main()
-{
-         long int amma = syscall(548);
-         printf("System call sys_hello returned %ld\n", amma);
-         return 0;
+int main() {
+ long int amma = syscall(548);
+ printf("System call sys_hello returned %ld\n", amma);
+ return 0;
 }
 \end{lstlisting}
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \centering 
 \includegraphics[width=13.5cm]{final.png}
-\label{figura:qualquernome}
+\label{figura:final}
 \caption{Resultado final}
 \end{figure}
 
 \newpage
 
-Todo processo também foi registrado no github no link: \url{https://github.com/GabrielSiqueira1/OS_WSL2-Kernel}
+\noindent Todo processo também foi registrado no github no link: \url{https://github.com/GabrielSiqueira1/WSL2-Kernel}
 
 \section{Questões}
 \begin{enumerate}
@@ -280,12 +279,12 @@ Todo processo também foi registrado no github no link: \url{https://github.com/
 		
 		\item Qual é o nome do arquivo executável que corresponde ao Kernel?
 		
-		Resposta: O arquivo bzImage aparece como executável, bem como o vmlinux que também é gerado por esse procedimento, no entanto apenas o bzImage aparece o nome do kernel.
+		Resposta: O arquivo bzImage aparece como executável, bem como o vmlinux, que também é gerado por esse procedimento, no entanto apenas no bzImage aparece o nome do kernel e de fato, após a instalação o novo kernel se torna um executable bzImage.
 		
-		\begin{figure}[!h]
+		\begin{figure}[!ht]
             \centering 
             \includegraphics[width=13.5cm]{file.png}
-            \label{figura:qualquernome}
+            \label{figura:file}
             \caption{Vmlinux e bzImage}
         \end{figure}
         		
@@ -293,7 +292,14 @@ Todo processo também foi registrado no github no link: \url{https://github.com/
         
 		\item Após a instalação do Kernel, em qual local (diretório) foi armazenado o executável do Kernel?
 		
-		Resposta: Em arch/x86/boot/ onde podemos encontrar o bzImage e como apresentado pela figura 6.
+		Resposta: Em /boot onde podemos encontrar o arquivo vmlinuz seguida da versão do kernel.
+		
+		\begin{figure}[!ht]
+            \centering 
+            \includegraphics[width=13.5cm]{vmlinuz.png}
+            \label{figura:vmlinuz}
+            \caption{vmlinuz - LinuxMint}
+        \end{figure}
 		
 		\item Em qual nível de privilégio a chamada de sistema implementada irá executar (usuário ou kernel/núcleo)?
 		
@@ -305,25 +311,23 @@ Todo processo também foi registrado no github no link: \url{https://github.com/
 		
 		\item O Kernel precisará de ser recompilado toda vez que uma nova funcionalidade for adicionada ao kernel? Explique. Provavelmente, você terá que pesquisar na internet. Não precisa se preocupar em dar a resposta correta, apenas pense sobre o assunto e procure responder a questão.
 		
-		Resposta: É necessário. Baseado nas pesquisas realizadas, apenas módulos podem ser adicionados, por mais que seja díficil, sem recompilar, no entanto, esses não podem implementar chamadas de sistemas. De certo modo faz sentido, veja a quantidade de passos que foram necessários para implementar uma chamada de sistema, alteração de tabela e de makefiles. Makefiles são justamente arquivos que são compilados com o comando make que realiza a compilação geral dos processos, ou seja, não compilar resulta na não inserção da nova chamada de sistema.
-		
+		Resposta: Não é necessário. Veja um exemplo, se o kernel é monolítco, toda vez que é necessário utilizar um driver ele é instalado e o kernel não é recompilado. Isso é possível somente se o driver faz parte do módulo do kernel.
 		
 	\end{enumerate}
 \newpage
 
 \addcontentsline{toc}{section}{Bibliografia}
 \section*{Bibliografia}
+
 \footnotesize{
 
-\noindent TLPD. Linux Kernel Modules Installation HOWTO. Disponível em \url{https://tldp.org/HOWTO/Modules/kernel.html}. Acesso em 22 de agosto de 2022.\\
+\noindent TLPD. Linux Kernel Modules Installation HOWTO. Disponível em https://tldp.org/HOW\\TO/Modules/kernel.html. Acesso em 22 de agosto de 2022.\\
 
 \noindent STACK OVERFLOW. How to implment my own system call without recompiling the linux kernel. Disponível em https://stackoverflow.com/questions/17218534/how-to-implement-my-own-system-call-without-recompiling-the-linux-kernel. Acesso em 22 de agosto de 2022.\\
 
-\noindent UNIVERSITY OF PITTSBURGH. What is a makefile? Disponível em \url{http://www.sis.pitt.edu/mbsclass/tutorial/advanced/makefile/whatis.htm#:~:text=A%20makefile%20is%20a%20special,the%20makefile%20will%20be%20executed.}. Acesso em 22 de agosto de 2022.
+\noindent AL-RASHID, J. J. Adding A System Call To The Linux Kernel (5.8.1) In Ubuntu (20.04 LTS). Disponível em https://dev.to/jasper/adding-a-system-call-to-the-linux-kernel-5-8-1-in-ubuntu-20-04-lts-2ga8 Acesso em 17 de agosto de 2022.\\
 
-\noindent AL-RASHID, J. J. Adding A System Call To The Linux Kernel (5.8.1) In Ubuntu (20.04 LTS). Disponível em https://dev.to/jasper/adding-a-system-call-to-the-linux-kernel-5-8-1-in-ubuntu-20-04-lts-2ga8 Acesso em 17 de agosto de 2022.
-
-\noindent MICRO HOBBY. Compilando o seu próprio kernel no wsl. Disponível em \url{https://www.youtube.com/watch?v=HQzR1shf5j0} Acesso em 17 de agosto de 2022.
+\noindent MICRO HOBBY. Compilando o seu próprio kernel no wsl. Disponível em https://www.you\\tube.com/watch?v=HQzR1shf5j0. Acesso em 17 de agosto de 2022.
 
 }
 \newpage
